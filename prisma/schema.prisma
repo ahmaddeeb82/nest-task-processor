@@ -1,0 +1,25 @@
+generator client {
+  provider   = "prisma-client-js"
+  engineType = "client"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model AirQualityAlert {
+  id               String   @id @default(cuid())
+  regionCode        String
+  city              String
+  timestamp         DateTime
+  aqi               Int?
+  category          String?
+  dominantPollutant String?
+  pm25              Float?
+  pm10              Float?
+  createdAt         DateTime @default(now())
+
+  @@index([timestamp])
+  @@index([city])
+  @@index([regionCode])
+}
